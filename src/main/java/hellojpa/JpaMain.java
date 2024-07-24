@@ -1,10 +1,7 @@
 package hellojpa;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
-
+import javax.persistence.*;
+import java.util.List;
 
 public class JpaMain {
     public static void main(String[] args) {
@@ -16,9 +13,11 @@ public class JpaMain {
         EntityTransaction tx = em.getTransaction();
         tx.begin();  //em을 마치 자바 컬렉션처럼 객체를 대신 저장해주는 놈이라 생각하기
         try {
-            Member findMember = em.find(Member.class, 1L);
-            findMember.setName("HelloJPA");
-
+            Member member = new Member();
+            member.setId(1L);
+            member.setUsername("A");
+            member.setRoleType(RoleType.USER);
+            em.persist(member);
             tx.commit();
         }catch(Exception e){
             tx.rollback();
@@ -29,3 +28,4 @@ public class JpaMain {
     }
 
 }
+
