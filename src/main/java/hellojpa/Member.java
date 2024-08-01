@@ -4,26 +4,55 @@ import javax.persistence.*;
 
 @Entity
 public class Member {
-    @ Id
+    @Id@GeneratedValue
+    private Long Id;
 
-    private Long id;
-    @Column(name = "name")
-    private String username;
+    public String getName() {
+        return name;
+    }
 
+    public void setName(String name) {
+        this.name = name;
+    }
 
-    public Member(){}
+    public Team getTeam() {
+        return team;
+    }
 
+    public void setTeam(Team team) {
+        this.team = team;
+    }
+
+    @Column(name = "USERNAME")
+    private int age;
+    private String name;
+
+    @ManyToOne
+    @JoinColumn(name = "TEAM_ID")
+    private Team team;
     public Long getId() {
-        return id;
+        return Id;
     }
 
     public void setId(Long id) {
-        this.id = id;
+        Id = id;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public String getUsername() {
+        return name;
+    }
+
+    public void setUsername(String name) {
+        this.name = name;
     }
 
 
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
 }
